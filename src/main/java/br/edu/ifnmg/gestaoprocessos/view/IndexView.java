@@ -1,4 +1,4 @@
-package br.edu.ifnmg.gestaoprocessos;
+package br.edu.ifnmg.gestaoprocessos.view;
 
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;

@@ -1,4 +1,4 @@
-package br.edu.ifnmg.gestaoprocessos.user;
+package br.edu.ifnmg.gestaoprocessos.domain.user;
 
 public enum UserRole {
     ADMIN,

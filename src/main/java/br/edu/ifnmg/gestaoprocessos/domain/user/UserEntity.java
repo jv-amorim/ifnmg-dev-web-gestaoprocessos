@@ -1,6 +1,6 @@
-package br.edu.ifnmg.gestaoprocessos.user;
+package br.edu.ifnmg.gestaoprocessos.domain.user;
 
-import br.edu.ifnmg.gestaoprocessos.base.BaseEntity;
+import br.edu.ifnmg.gestaoprocessos.domain.base.BaseEntity;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -1,7 +1,7 @@
-package br.edu.ifnmg.gestaoprocessos.applicant;
+package br.edu.ifnmg.gestaoprocessos.domain.applicant;
 
-import br.edu.ifnmg.gestaoprocessos.base.BaseEntity;
-import br.edu.ifnmg.gestaoprocessos.user.UserEntity;
+import br.edu.ifnmg.gestaoprocessos.domain.base.BaseEntity;
+import br.edu.ifnmg.gestaoprocessos.domain.user.UserEntity;
 import java.io.Serializable;
 import java.time.LocalDate;
 import javax.persistence.CascadeType;

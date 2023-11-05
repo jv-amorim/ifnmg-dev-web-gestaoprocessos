@@ -1,4 +1,4 @@
-package br.edu.ifnmg.gestaoprocessos.base;
+package br.edu.ifnmg.gestaoprocessos.domain.base;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -82,6 +82,10 @@ public abstract class BaseEntity implements Serializable {
         trash = false;
         createdAt = LocalDateTime.now(ZoneOffset.UTC);
         updatedAt = LocalDateTime.from(createdAt);
+    }
+    
+    public void refreshUpdatedAt() {
+        updatedAt = LocalDateTime.now(ZoneOffset.UTC);
     }
     
 }
