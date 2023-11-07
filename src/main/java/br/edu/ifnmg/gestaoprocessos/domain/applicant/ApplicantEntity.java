@@ -26,6 +26,9 @@ public class ApplicantEntity extends BaseEntity implements Serializable {
     @Column(nullable = false)
     private Boolean emailVerified;
     
+    @Column(nullable = true)
+    private Boolean newsletterOptIn;
+    
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, optional = false)
     @JoinColumn(name = "userid", nullable = false, unique = true)
     private UserEntity user;
@@ -61,6 +64,14 @@ public class ApplicantEntity extends BaseEntity implements Serializable {
 
     public void setUser(UserEntity user) {
         this.user = user;
+    }
+
+    public Boolean getNewsletterOptIn() {
+        return newsletterOptIn;
+    }
+
+    public void setNewsletterOptIn(Boolean newsletterOptIn) {
+        this.newsletterOptIn = newsletterOptIn;
     }
     //</editor-fold>
     
