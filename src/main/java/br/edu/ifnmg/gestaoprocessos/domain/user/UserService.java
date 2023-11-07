@@ -16,7 +16,7 @@ public class UserService implements UserServiceLocal {
         validateReqCreateUser(req);
         
         UserEntity user = new UserEntity();
-        user.setRole(UserRole.USER);
+        user.setRole(UserRole.APPLICANT);
         user.setName(req.getName().trim());
         user.setEmail(req.getEmail().trim());
         user.setPasswordHash("123ABC");
