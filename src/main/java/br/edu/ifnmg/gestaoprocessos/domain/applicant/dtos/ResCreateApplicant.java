@@ -1,7 +1,7 @@
 package br.edu.ifnmg.gestaoprocessos.domain.applicant.dtos;
 
 public class ResCreateApplicant {
-    
+
     private Long applicantId;
 
     //<editor-fold defaultstate="collapsed" desc="Getters/Setters">
@@ -13,5 +13,5 @@ public class ResCreateApplicant {
         this.applicantId = applicantId;
     }
     //</editor-fold>
-    
+
 }

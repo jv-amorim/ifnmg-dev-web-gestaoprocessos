@@ -7,13 +7,13 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class ReqCreateApplicant extends ReqCreateUser {
-    
+
     @NotBlank
     @Size(min = 11, max = 11)
     private String cpf;
-    
+
     @NotNull
-    private LocalDate birthDate; 
+    private LocalDate birthDate;
 
     //<editor-fold defaultstate="collapsed" desc="Getters/Setters">
     public String getCpf() {
@@ -32,5 +32,5 @@ public class ReqCreateApplicant extends ReqCreateUser {
         this.birthDate = birthDate;
     }
     //</editor-fold>
-    
+
 }

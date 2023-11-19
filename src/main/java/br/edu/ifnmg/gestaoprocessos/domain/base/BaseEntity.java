@@ -17,24 +17,24 @@ import javax.persistence.MappedSuperclass;
 public abstract class BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false)
     protected Long id;
-    
+
     @Column(nullable = false, unique = true)
     protected UUID uuid;
-    
+
     @Column(nullable = false)
     protected Boolean trash;
-    
+
     @Column(nullable = false, columnDefinition = "TIMESTAMP")
     protected LocalDateTime createdAt;
-    
+
     @Column(nullable = false, columnDefinition = "TIMESTAMP")
     protected LocalDateTime updatedAt;
-    
+
     //<editor-fold defaultstate="collapsed" desc="Getters/Setters">
     public Long getId() {
         return id;
@@ -76,16 +76,16 @@ public abstract class BaseEntity implements Serializable {
         this.updatedAt = updatedAt;
     }
     //</editor-fold>
-    
+
     public BaseEntity() {
         uuid = UUID.randomUUID();
         trash = false;
         createdAt = LocalDateTime.now(ZoneOffset.UTC);
         updatedAt = LocalDateTime.from(createdAt);
     }
-    
+
     public void refreshUpdatedAt() {
         updatedAt = LocalDateTime.now(ZoneOffset.UTC);
     }
-    
+
 }

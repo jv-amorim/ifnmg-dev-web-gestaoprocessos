@@ -9,41 +9,28 @@ import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
 @Entity(name = "User")
-@Table(name = "users")
+@Table(name = "user_")
 public class UserEntity extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 20)
+    @Column(name = "role_", nullable = false, length = 20)
     private UserRole role;
-    
+
     @Column(nullable = false, length = 100)
     private String name;
-    
+
     @Column(nullable = false, unique = true, length = 255)
     private String email;
-    
+
     @Column(nullable = false)
     private String passwordHash;
-    
+
     @Column(nullable = false)
     private String passwordSalt;
 
-    public UserEntity() {
-    	
-    }
-    
-    public UserEntity(UserRole role, String name, String email, String passwordHash, String passwordSalt) {
-		super();
-		this.role = role;
-		this.name = name;
-		this.email = email;
-		this.passwordHash = passwordHash;
-		this.passwordSalt = passwordSalt;
-	}
-
-	//<editor-fold defaultstate="collapsed" desc="Getters/Setters">
+    //<editor-fold defaultstate="collapsed" desc="Getters/Setters">
     public UserRole getRole() {
         return role;
     }
@@ -84,5 +71,5 @@ public class UserEntity extends BaseEntity implements Serializable {
         this.passwordSalt = passwordSalt;
     }
     //</editor-fold>
-    
+
 }
