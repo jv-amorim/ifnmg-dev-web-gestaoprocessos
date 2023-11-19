@@ -4,22 +4,15 @@ import br.edu.ifnmg.gestaoprocessos.domain.user.UserEntity;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import br.edu.ifnmg.gestaoprocessos.domain.user.UserDaoLocal;
+
+import br.edu.ifnmg.gestaoprocessos.data.base.GenericDao;
 
 @Stateless
-public class UserDao implements UserDaoLocal {
-    
-    @PersistenceContext
-    private EntityManager entityManager;
+public class UserDao extends GenericDao implements UserDaoLocal {
     
     @Override
     public void save(UserEntity user) {
-        if (user.getId() == null) {
-            entityManager.persist(user);
-        } else {
-            user.refreshUpdatedAt();
-            entityManager.merge(user);
-        }
+        super.saveOrUpdate(user);
     }
     
 }

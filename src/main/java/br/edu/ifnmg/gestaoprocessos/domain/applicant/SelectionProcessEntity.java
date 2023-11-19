@@ -2,6 +2,7 @@ package br.edu.ifnmg.gestaoprocessos.domain.applicant;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -28,7 +29,7 @@ public class SelectionProcessEntity extends BaseEntity implements Serializable{
 	private String closedAt;
 	
 	@OneToMany(mappedBy = "process", cascade = CascadeType.ALL, orphanRemoval = true)
-	private ArrayList<ApplicantProcessEntity> aplication;
+	private List<ApplicantProcessEntity> aplication;
 
 	public String getName() {
 		return name;
@@ -62,11 +63,11 @@ public class SelectionProcessEntity extends BaseEntity implements Serializable{
 		this.closedAt = closedAt;
 	}
 
-	public ArrayList<ApplicantProcessEntity> getAplication() {
+	public List<ApplicantProcessEntity> getAplication() {
 		return aplication;
 	}
 
-	public void setAplication(ArrayList<ApplicantProcessEntity> aplication) {
+	public void setAplication(List<ApplicantProcessEntity> aplication) {
 		this.aplication = aplication;
 	}
 

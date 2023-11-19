@@ -1,5 +1,6 @@
 package br.edu.ifnmg.gestaoprocessos.domain.applicant;
 
+import br.edu.ifnmg.gestaoprocessos.data.applicant.ApplicantDaoLocal;
 import br.edu.ifnmg.gestaoprocessos.domain.applicant.dtos.ReqCreateApplicant;
 import br.edu.ifnmg.gestaoprocessos.domain.applicant.dtos.ResCreateApplicant;
 import br.edu.ifnmg.gestaoprocessos.domain.user.UserEntity;

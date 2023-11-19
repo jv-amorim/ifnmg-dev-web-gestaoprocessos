@@ -1,7 +1,7 @@
 package br.edu.ifnmg.gestaoprocessos.domain.applicant;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,7 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
@@ -28,10 +27,8 @@ public class NewsletterEntity extends BaseEntity implements Serializable{
 	private String content;
 	
 	@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	@JoinTable(name="tbl_applicants_newsletter",
-				joinColumns = {@JoinColumn(name = "applicantid")},
-				inverseJoinColumns = {@JoinColumn(name = "newsletterid")})
-	private ArrayList<ApplicantEntity> applicants;
+	@JoinTable(name="tbl_applicants_newsletter")
+	private List<ApplicantEntity> applicants;
 
 	public NewsletterStatus getStatus() {
 		return status;
@@ -49,11 +46,11 @@ public class NewsletterEntity extends BaseEntity implements Serializable{
 		this.content = content;
 	}
 
-	public ArrayList<ApplicantEntity> getApplicants() {
+	public List<ApplicantEntity> getApplicants() {
 		return applicants;
 	}
 
-	public void setApplicants(ArrayList<ApplicantEntity> applicants) {
+	public void setApplicants(List<ApplicantEntity> applicants) {
 		this.applicants = applicants;
 	}
 	

@@ -30,7 +30,20 @@ public class UserEntity extends BaseEntity implements Serializable {
     @Column(nullable = false)
     private String passwordSalt;
 
-    //<editor-fold defaultstate="collapsed" desc="Getters/Setters">
+    public UserEntity() {
+    	
+    }
+    
+    public UserEntity(UserRole role, String name, String email, String passwordHash, String passwordSalt) {
+		super();
+		this.role = role;
+		this.name = name;
+		this.email = email;
+		this.passwordHash = passwordHash;
+		this.passwordSalt = passwordSalt;
+	}
+
+	//<editor-fold defaultstate="collapsed" desc="Getters/Setters">
     public UserRole getRole() {
         return role;
     }

@@ -4,22 +4,15 @@ import br.edu.ifnmg.gestaoprocessos.domain.applicant.ApplicantEntity;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import br.edu.ifnmg.gestaoprocessos.domain.applicant.ApplicantDaoLocal;
+
+import br.edu.ifnmg.gestaoprocessos.data.base.GenericDao;
 
 @Stateless
-public class ApplicantDao implements ApplicantDaoLocal {
-    
-    @PersistenceContext
-    private EntityManager entityManager;
+public class ApplicantDao extends GenericDao implements ApplicantDaoLocal {
 
     @Override
     public void save(ApplicantEntity applicant) {
-        if (applicant.getId() == null) {
-            entityManager.persist(applicant);
-        } else {
-            applicant.refreshUpdatedAt();
-            entityManager.merge(applicant);
-        }
+       super.saveOrUpdate(applicant);
     }
     
 }

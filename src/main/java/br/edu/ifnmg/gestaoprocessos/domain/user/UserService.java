@@ -1,5 +1,6 @@
 package br.edu.ifnmg.gestaoprocessos.domain.user;
 
+import br.edu.ifnmg.gestaoprocessos.data.user.UserDaoLocal;
 import br.edu.ifnmg.gestaoprocessos.domain.user.dtos.ReqCreateUser;
 import javax.ejb.Singleton;
 import javax.inject.Inject;

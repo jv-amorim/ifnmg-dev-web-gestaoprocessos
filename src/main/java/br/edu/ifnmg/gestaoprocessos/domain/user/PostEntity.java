@@ -1,7 +1,7 @@
 package br.edu.ifnmg.gestaoprocessos.domain.user;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -34,13 +34,13 @@ public class PostEntity extends BaseEntity implements Serializable{
 	private SelectionProcessEntity process;
 	
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-	private ArrayList<FileEntity> attachments;
+	private List<FileEntity> attachments;
 	
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-	private ArrayList<PostHistoryEntity> history;
+	private List<PostHistoryEntity> history;
 	
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-	private ArrayList<PostSocialEntity> socialPosts;
+	private List<PostSocialEntity> socialPosts;
 
 	public PostCategoryEnum getCategory() {
 		return category;
@@ -74,27 +74,27 @@ public class PostEntity extends BaseEntity implements Serializable{
 		this.process = process;
 	}
 
-	public ArrayList<FileEntity> getAttachments() {
+	public List<FileEntity> getAttachments() {
 		return attachments;
 	}
 
-	public void setAttachments(ArrayList<FileEntity> attachments) {
+	public void setAttachments(List<FileEntity> attachments) {
 		this.attachments = attachments;
 	}
 
-	public ArrayList<PostHistoryEntity> getHistory() {
+	public List<PostHistoryEntity> getHistory() {
 		return history;
 	}
 
-	public void setHistory(ArrayList<PostHistoryEntity> history) {
+	public void setHistory(List<PostHistoryEntity> history) {
 		this.history = history;
 	}
 
-	public ArrayList<PostSocialEntity> getSocialPosts() {
+	public List<PostSocialEntity> getSocialPosts() {
 		return socialPosts;
 	}
 
-	public void setSocialPosts(ArrayList<PostSocialEntity> socialPosts) {
+	public void setSocialPosts(List<PostSocialEntity> socialPosts) {
 		this.socialPosts = socialPosts;
 	}
 	
