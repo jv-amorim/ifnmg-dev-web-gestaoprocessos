@@ -1,6 +1,8 @@
 package br.edu.ifnmg.gestaoprocessos.domain.applicantprocess;
 
-public interface ApplicantProcessDaoLocal {
+import br.edu.ifnmg.gestaoprocessos.domain.base.BaseDaoLocal;
+
+public interface ApplicantProcessDaoLocal extends BaseDaoLocal {
 
     void save(ApplicantProcessEntity applicantProcessEntity);
 

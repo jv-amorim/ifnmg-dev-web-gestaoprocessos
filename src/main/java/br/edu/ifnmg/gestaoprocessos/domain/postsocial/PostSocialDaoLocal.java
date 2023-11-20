@@ -1,5 +1,9 @@
 package br.edu.ifnmg.gestaoprocessos.domain.postsocial;
 
-public interface PostSocialDaoLocal {
-	void save(PostSocialEntity postSocialEntity);
+import br.edu.ifnmg.gestaoprocessos.domain.base.BaseDaoLocal;
+
+public interface PostSocialDaoLocal extends BaseDaoLocal {
+
+    void save(PostSocialEntity postSocialEntity);
+
 }
