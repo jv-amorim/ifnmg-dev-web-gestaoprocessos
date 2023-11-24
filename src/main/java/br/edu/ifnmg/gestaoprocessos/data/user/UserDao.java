@@ -34,8 +34,7 @@ public class UserDao extends BaseDao implements UserDaoLocal {
 
   @Override
   public List<UserEntity> listAll() {
-      Query query = entityManager.createQuery("SELECT u FROM User u");
-      return query.getResultList();
+      return super.findListPure("SELECT u FROM User u", null);
   }
 
 }
