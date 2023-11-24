@@ -15,6 +15,10 @@ import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
 
+import br.edu.ifnmg.gestaoprocessos.domain.user.UserDaoLocal;
+import br.edu.ifnmg.gestaoprocessos.domain.user.UserEntity;
+import br.edu.ifnmg.gestaoprocessos.domain.user.UserRole;
+
 @Singleton
 @Startup
 public class InitialDataLoader {
