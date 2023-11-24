@@ -1,5 +1,6 @@
 package br.edu.ifnmg.gestaoprocessos.data.base;
 
+import br.edu.ifnmg.gestaoprocessos.domain.base.BaseDaoLocal;
 import br.edu.ifnmg.gestaoprocessos.domain.base.BaseEntity;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -7,17 +8,17 @@ import javax.persistence.NamedQuery;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-public abstract class BaseDao {
+public abstract class BaseDao implements BaseDaoLocal {
 
     @PersistenceContext
-    private EntityManager entityManager;
+    protected EntityManager entityManager;
 
-    public void saveOrUpdate(BaseEntity ent) {
-        if (ent.getId() == null) {
-            entityManager.persist(ent);
+    public void saveOrUpdate(BaseEntity entity) {
+        if (entity.getId() == null) {
+            entityManager.persist(entity);
         } else {
-            ent.refreshUpdatedAt();
-            entityManager.merge(ent);
+            entity.refreshUpdatedAt();
+            entityManager.merge(entity);
         }
     }
     

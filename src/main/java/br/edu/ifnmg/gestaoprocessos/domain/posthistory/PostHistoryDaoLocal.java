@@ -1,5 +1,9 @@
 package br.edu.ifnmg.gestaoprocessos.domain.posthistory;
 
-public interface PostHistoryDaoLocal {
-	void save(PostHistoryEntity postHistoryEntity);
+import br.edu.ifnmg.gestaoprocessos.domain.base.BaseDaoLocal;
+
+public interface PostHistoryDaoLocal extends BaseDaoLocal {
+
+    void save(PostHistoryEntity postHistoryEntity);
+
 }

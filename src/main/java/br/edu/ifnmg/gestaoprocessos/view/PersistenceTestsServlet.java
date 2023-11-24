@@ -1,17 +1,31 @@
 package br.edu.ifnmg.gestaoprocessos.view;
 
+import br.edu.ifnmg.gestaoprocessos.domain.applicant.ApplicantDaoLocal;
+import br.edu.ifnmg.gestaoprocessos.domain.applicant.ApplicantEntity;
+import br.edu.ifnmg.gestaoprocessos.domain.selectionprocess.SelectionProcessDaoLocal;
+import br.edu.ifnmg.gestaoprocessos.domain.selectionprocess.SelectionProcessEntity;
+import br.edu.ifnmg.gestaoprocessos.domain.user.UserDaoLocal;
+import br.edu.ifnmg.gestaoprocessos.domain.user.UserEntity;
+import br.edu.ifnmg.gestaoprocessos.utils.Utils;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.Transactional;
 
-/**
- *
- * @author JVAmorim
- */
+@Transactional
 public class PersistenceTestsServlet extends HttpServlet {
+
+    @Inject
+    private UserDaoLocal userDao;
+    @Inject
+    private ApplicantDaoLocal applicantDao;
+    @Inject
+    private SelectionProcessDaoLocal processDao;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -24,16 +38,20 @@ public class PersistenceTestsServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         response.setContentType("text/html;charset=UTF-8");
+
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet PersistenceTestsServlet</title>");
+            out.println("<title>Gestão de Processos - Testes de Persistência</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet PersistenceTestsServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Testes de Persistência</h1>");
+            printUsers(out);
+            printApplicants(out);
+            printProcesses(out);
             out.println("</body>");
             out.println("</html>");
         }
@@ -75,7 +93,24 @@ public class PersistenceTestsServlet extends HttpServlet {
      */
     @Override
     public String getServletInfo() {
-        return "Short description";
+        return "Servlet para testes de persistência.";
     }// </editor-fold>
 
+    private void printUsers(PrintWriter out) {
+        List<UserEntity> result = userDao.listAll();
+        out.println("<h2>Usuários</h2>");
+        out.println("<p><pre>" + Utils.toJson(result) + "</pre></p>");
+    }
+
+    private void printApplicants(PrintWriter out) {
+        List<ApplicantEntity> result = applicantDao.listAll();
+        out.println("<h2>Candidatos</h2>");
+        out.println("<p><pre>" + Utils.toJson(result) + "</pre></p>");
+    }
+
+    private void printProcesses(PrintWriter out) {
+        List<SelectionProcessEntity> result = processDao.listAll();
+        out.println("<h2>Processos Seletivos</h2>");
+        out.println("<p><pre>" + Utils.toJson(result) + "</pre></p>");
+    }
 }
