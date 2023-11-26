@@ -3,11 +3,14 @@ package br.edu.ifnmg.gestaoprocessos.data.base;
 import br.edu.ifnmg.gestaoprocessos.domain.base.BaseDaoLocal;
 import br.edu.ifnmg.gestaoprocessos.domain.base.BaseEntity;
 import java.util.List;
+
+import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.NamedQuery;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+@RequestScoped
 public abstract class BaseDao implements BaseDaoLocal {
 
     @PersistenceContext

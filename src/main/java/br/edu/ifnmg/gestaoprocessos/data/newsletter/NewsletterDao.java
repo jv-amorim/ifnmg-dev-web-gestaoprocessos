@@ -5,7 +5,6 @@ import br.edu.ifnmg.gestaoprocessos.domain.newsletter.NewsletterDaoLocal;
 import br.edu.ifnmg.gestaoprocessos.domain.newsletter.NewsletterEntity;
 import javax.ejb.Stateless;
 
-@Stateless
 public class NewsletterDao extends BaseDao implements NewsletterDaoLocal {
 
     @Override

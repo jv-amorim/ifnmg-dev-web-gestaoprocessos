@@ -7,7 +7,6 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.Query;
 
-@Stateless
 public class SelectionProcessDao extends BaseDao implements SelectionProcessDaoLocal {
 
     @Override

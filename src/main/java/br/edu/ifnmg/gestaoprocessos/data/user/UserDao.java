@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.enterprise.context.RequestScoped;
 import javax.persistence.Query;
 
-@Stateless
 public class UserDao extends BaseDao implements UserDaoLocal {
 
     @Override

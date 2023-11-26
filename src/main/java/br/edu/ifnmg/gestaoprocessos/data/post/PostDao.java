@@ -5,7 +5,6 @@ import br.edu.ifnmg.gestaoprocessos.domain.post.PostDaoLocal;
 import br.edu.ifnmg.gestaoprocessos.domain.post.PostEntity;
 import javax.ejb.Stateless;
 
-@Stateless
 public class PostDao extends BaseDao implements PostDaoLocal {
 
     @Override

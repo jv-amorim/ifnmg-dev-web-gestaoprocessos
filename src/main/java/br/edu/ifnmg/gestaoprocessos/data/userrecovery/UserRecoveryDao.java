@@ -5,7 +5,6 @@ import br.edu.ifnmg.gestaoprocessos.domain.userrecovery.UserRecoveryDaoLocal;
 import br.edu.ifnmg.gestaoprocessos.domain.userrecovery.UserRecoveryEntity;
 import javax.ejb.Stateless;
 
-@Stateless
 public class UserRecoveryDao extends BaseDao implements UserRecoveryDaoLocal {
 
     @Override

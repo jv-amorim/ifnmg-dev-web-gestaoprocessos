@@ -5,7 +5,6 @@ import br.edu.ifnmg.gestaoprocessos.domain.applicantprocess.ApplicantProcessDaoL
 import br.edu.ifnmg.gestaoprocessos.domain.applicantprocess.ApplicantProcessEntity;
 import javax.ejb.Stateless;
 
-@Stateless
 public class ApplicantProcessDao extends BaseDao implements ApplicantProcessDaoLocal {
 
     @Override

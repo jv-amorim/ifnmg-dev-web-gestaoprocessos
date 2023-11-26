@@ -5,7 +5,6 @@ import br.edu.ifnmg.gestaoprocessos.domain.file.FileDaoLocal;
 import br.edu.ifnmg.gestaoprocessos.domain.file.FileEntity;
 import javax.ejb.Stateless;
 
-@Stateless
 public class FileDao extends BaseDao implements FileDaoLocal {
 
     @Override

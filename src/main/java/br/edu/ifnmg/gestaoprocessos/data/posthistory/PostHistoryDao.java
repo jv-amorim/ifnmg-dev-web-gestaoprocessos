@@ -5,7 +5,6 @@ import br.edu.ifnmg.gestaoprocessos.domain.posthistory.PostHistoryDaoLocal;
 import br.edu.ifnmg.gestaoprocessos.domain.posthistory.PostHistoryEntity;
 import javax.ejb.Stateless;
 
-@Stateless
 public class PostHistoryDao extends BaseDao implements PostHistoryDaoLocal {
 
     @Override

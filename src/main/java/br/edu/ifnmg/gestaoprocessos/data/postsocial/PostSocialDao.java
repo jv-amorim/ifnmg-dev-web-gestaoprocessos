@@ -5,7 +5,6 @@ import br.edu.ifnmg.gestaoprocessos.domain.postsocial.PostSocialDaoLocal;
 import br.edu.ifnmg.gestaoprocessos.domain.postsocial.PostSocialEntity;
 import javax.ejb.Stateless;
 
-@Stateless
 public class PostSocialDao extends BaseDao implements PostSocialDaoLocal {
 
     @Override
