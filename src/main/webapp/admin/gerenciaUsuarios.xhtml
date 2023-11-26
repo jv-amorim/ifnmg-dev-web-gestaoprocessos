@@ -2,81 +2,98 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	template="/WEB-INF/templates/default.xhtml"
-    xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-        <ui:define name="titulo">Gerência de Usuários</ui:define>
+	<ui:define name="titulo">Gerência de Usuários</ui:define>
 
 	<ui:define name="main">
 
-		<p:tabView>
+		<p:tabView id="tabView"
+			activeIndex="#{gerenciaUsuarioBean.activeTabIndex}">
 			<p:tab title="Cadastrar Usuarios">
-				<h:form>
-					<p:messages/>
+				<h:form id="registerForm">
+					<p:messages />
 					<p:fieldset
-					style="margin: 100px 0px 0px 100px; padding: 50px 0px;width: 50%;">
-					<p:panelGrid columns="1" layout="grid"
-						styleClass="showcase-text-align-center">
-						
-						<p:column>
-							<p:outputLabel value="Função" for="role" style="padding: 0 1em 0 0;"/>
-						<p:selectOneMenu id ="role" required="true" style="width: 20%;" value="#{gerenciaUsuarioBean.user.role}">
-							<f:selectItems value="#{gerenciaUsuarioBean.userRoles}" />
-						</p:selectOneMenu>
-						</p:column>
-						
-						<p:column>
-							<p:outputLabel value="Nome" style="padding: 0 1em 0 0;" for="name" />
-						<p:inputText id="name" value="#{gerenciaUsuarioBean.user.name}"
-							required="true"
-							requiredMessage="É necessario informar o nome do usuario para o cadastro" />
-						
-						</p:column>
-						
-						<p:column>
-							<p:outputLabel value="Email" style="padding: 0 1em 0 0;"
-							for="email" />
-							<p:inputText id="email" value="#{gerenciaUsuarioBean.user.email}"
-							required="true"
-							requiredMessage="É necessario informar o email do usuario para o cadastro" />
-						</p:column>
-						
-						<p:column>
-							<p:outputLabel value="Senha" style="padding: 0 1em 0 0;"
-							for="password" />
-							<p:inputText id="password"
-							value="#{gerenciaUsuarioBean.user.passwordHash}" required="true"
-							requiredMessage="É necessario informar a senha do usuario para o cadastro" />
-						</p:column>						
-						<p:column>
-							<p:commandButton update="@form"  style="margin: 1em 0; width: 20%" value="Salvar"/>
-						</p:column>
+						style="margin: 100px 0px 0px 100px; padding: 50px 0px;width: 50%;">
+						<p:panelGrid columns="1" layout="grid"
+							styleClass="showcase-text-align-center">
 
-					</p:panelGrid>
-				</p:fieldset>		
+							<p:column>
+								<p:outputLabel value="Função" for="role"
+									style="padding: 0 1em 0 0;" />
+								<p:selectOneMenu id="role" required="true" style="width: 20%;"
+									value="#{gerenciaUsuarioBean.user.role}">
+									<f:selectItems value="#{gerenciaUsuarioBean.userRoles}" />
+								</p:selectOneMenu>
+							</p:column>
+
+							<p:column>
+								<p:outputLabel value="Nome" style="padding: 0 1em 0 0;"
+									for="name" />
+								<p:inputText id="name" value="#{gerenciaUsuarioBean.user.name}"
+									required="true"
+									requiredMessage="É necessario informar o nome do usuario para o cadastro" />
+
+							</p:column>
+
+							<p:column>
+								<p:outputLabel value="Email" style="padding: 0 1em 0 0;"
+									for="email" />
+								<p:inputText id="email"
+									value="#{gerenciaUsuarioBean.user.email}" required="true"
+									requiredMessage="É necessario informar o email do usuario para o cadastro" />
+							</p:column>
+
+							<p:column>
+								<p:outputLabel value="Senha" style="padding: 0 1em 0 0;"
+									for="password" />
+								<p:inputText id="password"
+									value="#{gerenciaUsuarioBean.user.passwordHash}"
+									required="true"
+									requiredMessage="É necessario informar a senha do usuario para o cadastro" />
+							</p:column>
+							<p:column>
+								<p:commandButton update="@form tabView:tableForm:tableUser"
+									process="@form tabView:tableForm:tableUser"
+									action="#{gerenciaUsuarioBean.registerUser}"
+									style="margin: 1em 0; width: 20%" value="Salvar" />
+							</p:column>
+
+						</p:panelGrid>
+					</p:fieldset>
 				</h:form>
 			</p:tab>
 			<p:tab title="Listar Usuarios">
-				<p:dataTable value="#{gerenciaUsuarioBean.listUser}" var="user" id="tabelaUser" paginator="true" rows="10">
-					<p:column>
-						<f:facet name="header">Nome</f:facet>
-						<p:outputLabel value="#{user.name}"/>
-					</p:column>
-					<p:column>
-						<f:facet name="header">Email</f:facet>
-						<p:outputLabel value="#{user.email}"/>
-					</p:column>
-					<p:column>
-						<f:facet name="header">Função</f:facet>
-						<p:outputLabel value="#{user.role}"/>
-					</p:column>s
+				<h:form id="tableForm">
+					<p:dataTable value="#{gerenciaUsuarioBean.listUser}" var="user"
+						id="tableUser" paginator="true" rows="10">
+						<p:column>
+							<f:facet name="header">Nome</f:facet>
+							<p:outputLabel value="#{user.name}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">Email</f:facet>
+							<p:outputLabel value="#{user.email}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">Função</f:facet>
+							<p:outputLabel value="#{user.role}" />
+						</p:column>s
 					<p:column style="text-align: right;">
-						<p:button icon="pi pi-trash" title="Editar" styleClass="ui-button-danger" />
-						<p:button icon="pi pi-user-edit" title="Deletar" style="margin: 0 10px"/>
-					</p:column>
-				</p:dataTable>
+							<p:commandButton icon="pi pi-user-edit"
+								update="tabView tabView:registerForm"
+								process="tabView tabView:registerForm"
+								action="#{gerenciaUsuarioBean.loadUser(user)}" title="Editar" />
+							<p:commandButton icon="pi pi-trash" styleClass="ui-button-danger"
+								action="#{gerenciaUsuarioBean.deleteUser(user)}" update="@form"
+								process="@form" title="Deletar" style="margin: 0 10px" />
+						</p:column>
+					</p:dataTable>
+
+				</h:form>
 			</p:tab>
 		</p:tabView>
 	</ui:define>
