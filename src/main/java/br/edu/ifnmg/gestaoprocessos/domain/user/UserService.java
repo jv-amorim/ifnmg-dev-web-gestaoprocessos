@@ -1,8 +1,11 @@
 package br.edu.ifnmg.gestaoprocessos.domain.user;
 
 import br.edu.ifnmg.gestaoprocessos.domain.user.dtos.ReqCreateUser;
+import java.util.HashMap;
+import java.util.Map;
 import javax.ejb.Singleton;
 import javax.inject.Inject;
+import javax.security.enterprise.identitystore.Pbkdf2PasswordHash;
 import javax.transaction.Transactional;
 
 @Singleton
@@ -11,6 +14,23 @@ public class UserService implements UserServiceLocal {
 
     @Inject
     private UserDaoLocal userDao;
+    @Inject
+    private Pbkdf2PasswordHash passwordHasher;
+
+    private Boolean isHasherInitialized = false;
+
+    @Override
+    public String generatePasswordHash(String password) {
+        if (!isHasherInitialized) {
+            Map<String, String> parameters = new HashMap<>();
+            parameters.put("Pbkdf2PasswordHash.Iterations", "3071");
+            parameters.put("Pbkdf2PasswordHash.Algorithm", "PBKDF2WithHmacSHA512");
+            parameters.put("Pbkdf2PasswordHash.SaltSizeBytes", "64");
+            passwordHasher.initialize(parameters);
+            isHasherInitialized = true;
+        }
+        return passwordHasher.generate(password.toCharArray());
+    }
 
     @Override
     public UserEntity create(ReqCreateUser req) throws Exception {
@@ -20,7 +40,7 @@ public class UserService implements UserServiceLocal {
         user.setRole(UserRole.APPLICANT);
         user.setName(req.getName().trim());
         user.setEmail(req.getEmail().trim());
-        user.setPasswordHash("123ABC");
+        user.setPasswordHash(generatePasswordHash(req.getPassword()));
 
         userDao.save(user);
 
@@ -46,6 +66,11 @@ public class UserService implements UserServiceLocal {
         validateReqCreateUser(req);
 
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public UserEntity getByEmail(String email) {
+        return userDao.findByEmail(email);
     }
 
 }
