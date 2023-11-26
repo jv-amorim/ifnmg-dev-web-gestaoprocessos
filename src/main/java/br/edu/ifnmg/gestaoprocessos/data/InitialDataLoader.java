@@ -8,16 +8,13 @@ import br.edu.ifnmg.gestaoprocessos.domain.selectionprocess.SelectionProcessStat
 import br.edu.ifnmg.gestaoprocessos.domain.user.UserDaoLocal;
 import br.edu.ifnmg.gestaoprocessos.domain.user.UserEntity;
 import br.edu.ifnmg.gestaoprocessos.domain.user.UserRole;
+import br.edu.ifnmg.gestaoprocessos.domain.user.UserServiceLocal;
 import java.time.LocalDate;
 import java.time.Month;
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
-
-import br.edu.ifnmg.gestaoprocessos.domain.user.UserDaoLocal;
-import br.edu.ifnmg.gestaoprocessos.domain.user.UserEntity;
-import br.edu.ifnmg.gestaoprocessos.domain.user.UserRole;
 
 @Singleton
 @Startup
@@ -29,6 +26,8 @@ public class InitialDataLoader {
     private ApplicantDaoLocal applicantDao;
     @Inject
     private SelectionProcessDaoLocal processDao;
+    @Inject
+    private UserServiceLocal userService;
 
     @PostConstruct
     public void execute() {
@@ -37,31 +36,31 @@ public class InitialDataLoader {
         user1.setRole(UserRole.ADMIN);
         user1.setName("Admin");
         user1.setEmail("admin@ifnmg.edu.br");
-        user1.setPasswordHash("#$%123ABC");
+        user1.setPasswordHash(userService.generatePasswordHash("admin123"));
 
         UserEntity user2 = new UserEntity();
         user2.setRole(UserRole.EDITOR);
         user2.setName("João Amorim");
         user2.setEmail("jvpa1@aluno.ifnmg.edu.br");
-        user2.setPasswordHash("#$%123ABC");
+        user2.setPasswordHash(userService.generatePasswordHash("joao123"));
 
         UserEntity user3 = new UserEntity();
         user3.setRole(UserRole.EDITOR);
         user3.setName("Diego Magalhães");
         user3.setEmail("dgmb1@aluno.ifnmg.edu.br");
-        user3.setPasswordHash("#$%123ABC");
+        user3.setPasswordHash(userService.generatePasswordHash("diego123"));
 
         UserEntity user4 = new UserEntity();
         user4.setRole(UserRole.APPLICANT);
         user4.setName("Ana Zaira");
         user4.setEmail("anazaira@mail.com");
-        user4.setPasswordHash("#$%123ABC");
+        user4.setPasswordHash(userService.generatePasswordHash("ana123"));
 
         UserEntity user5 = new UserEntity();
         user5.setRole(UserRole.APPLICANT);
         user5.setName("Beatriz Yana");
         user5.setEmail("beatrizyana@mail.com");
-        user5.setPasswordHash("#$%123ABC");
+        user5.setPasswordHash(userService.generatePasswordHash("beatriz123"));
 
         userDao.save(user1);
         userDao.save(user2);
