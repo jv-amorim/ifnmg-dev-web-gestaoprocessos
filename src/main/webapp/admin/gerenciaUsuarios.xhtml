@@ -5,15 +5,18 @@
     template="/WEB-INF/templates/default.xhtml"
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
     xmlns:p="http://primefaces.org/ui">
-    
-    <ui:define name="titulo">Processos Seletivos</ui:define>
+	
+    <ui:define name="titulo">Usuários - Gestão de Processos Seletivos</ui:define>
     
     <ui:define name="main">
-        
-        <a href="./PersistenceTests"> Visualizar Testes de Persistência </a>
-        <br />
-        <a href="./login.xhtml"> Realizar Login </a>
-        
+    	<p:tabView >
+    		<p:tab title="Adicionar Usuarios">
+    			
+    		</p:tab>
+    		<p:tab title="Listar Usuarios">
+    			
+    		</p:tab>
+    	</p:tabView>
     </ui:define>
     
 </ui:composition>

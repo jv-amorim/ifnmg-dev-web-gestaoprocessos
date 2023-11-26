@@ -10,4 +10,6 @@ public interface UserServiceLocal {
 
     UserEntity createEditor(ReqCreateUser req) throws Exception;
 
+    UserEntity getByEmail(String email);
+
 }

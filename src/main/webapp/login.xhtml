@@ -7,7 +7,7 @@
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
     xmlns:p="http://primefaces.org/ui">
 	
-	    <ui:define name="titulo">Login</ui:define>
+    <ui:define name="titulo">Login</ui:define>
     
     <ui:define name="main">
     <h:form>
@@ -17,12 +17,12 @@
 			<p:panelGrid columns="1" layout="grid" styleClass="showcase-text-align-center" >
 				<p:column>
 					<p:outputLabel value="Email" style="padding: 0 1em 0 0;" for="emailLogin"/>
-					<p:inputText id="emailLogin" value="#{loginBean.usuario}" required="true" requiredMessage="É necessario informar um email para efetuar o login"/>
+					<p:inputText id="emailLogin" value="#{loginBean.email}" required="true" requiredMessage="É necessário informar um email para efetuar o login"/>
 				</p:column>
 				<p:column>
 					<p:outputLabel value="Senha" style="padding: 0 1em 0 0;" for="senhaLogin"/>
-					<p:password id="senhaLogin" value="#{loginBean.senha}" required="true" requiredMessage="É necessario informar uma senha para efetuar o login"/>
-					<p:commandButton update="@form"  style="margin: 1em;" value="Entrar"/>
+					<p:password id="senhaLogin" value="#{loginBean.password}" required="true" requiredMessage="É necessário informar uma senha para efetuar o login"/>
+					<p:commandButton update="@form"  style="margin: 1em;" value="Entrar" action="#{loginBean.login}" />
 				</p:column>		
 			</p:panelGrid>
 		</p:fieldset>

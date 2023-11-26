@@ -68,4 +68,9 @@ public class UserService implements UserServiceLocal {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    @Override
+    public UserEntity getByEmail(String email) {
+        return userDao.findByEmail(email);
+    }
+
 }
