@@ -38,35 +38,30 @@ public class InitialDataLoader {
         user1.setName("Admin");
         user1.setEmail("admin@ifnmg.edu.br");
         user1.setPasswordHash("#$%123ABC");
-        user1.setPasswordSalt("JKL369");
 
         UserEntity user2 = new UserEntity();
         user2.setRole(UserRole.EDITOR);
         user2.setName("João Amorim");
         user2.setEmail("jvpa1@aluno.ifnmg.edu.br");
         user2.setPasswordHash("#$%123ABC");
-        user2.setPasswordSalt("JKL369");
 
         UserEntity user3 = new UserEntity();
         user3.setRole(UserRole.EDITOR);
         user3.setName("Diego Magalhães");
         user3.setEmail("dgmb1@aluno.ifnmg.edu.br");
         user3.setPasswordHash("#$%123ABC");
-        user3.setPasswordSalt("JKL369");
 
         UserEntity user4 = new UserEntity();
         user4.setRole(UserRole.APPLICANT);
         user4.setName("Ana Zaira");
         user4.setEmail("anazaira@mail.com");
         user4.setPasswordHash("#$%123ABC");
-        user4.setPasswordSalt("JKL369");
 
         UserEntity user5 = new UserEntity();
         user5.setRole(UserRole.APPLICANT);
         user5.setName("Beatriz Yana");
         user5.setEmail("beatrizyana@mail.com");
         user5.setPasswordHash("#$%123ABC");
-        user5.setPasswordSalt("JKL369");
 
         userDao.save(user1);
         userDao.save(user2);

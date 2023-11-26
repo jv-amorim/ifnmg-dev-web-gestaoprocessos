@@ -27,9 +27,6 @@ public class UserEntity extends BaseEntity implements Serializable {
     @Column(nullable = false)
     private String passwordHash;
 
-    @Column(nullable = false)
-    private String passwordSalt;
-
     //<editor-fold defaultstate="collapsed" desc="Getters/Setters">
     public UserRole getRole() {
         return role;
@@ -61,14 +58,6 @@ public class UserEntity extends BaseEntity implements Serializable {
 
     public void setPasswordHash(String passwordHash) {
         this.passwordHash = passwordHash;
-    }
-
-    public String getPasswordSalt() {
-        return passwordSalt;
-    }
-
-    public void setPasswordSalt(String passwordSalt) {
-        this.passwordSalt = passwordSalt;
     }
     //</editor-fold>
 
