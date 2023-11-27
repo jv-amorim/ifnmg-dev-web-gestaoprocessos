@@ -10,6 +10,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.json.bind.annotation.JsonbTransient;
 
 import br.edu.ifnmg.gestaoprocessos.domain.applicant.ApplicantEntity;
 import br.edu.ifnmg.gestaoprocessos.domain.base.BaseEntity;
@@ -35,6 +36,7 @@ public class UserEntity extends BaseEntity implements Serializable {
 
 	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(nullable = true)
+	@JsonbTransient
 	private ApplicantEntity applicant;
 
 	// <editor-fold defaultstate="collapsed" desc="Getters/Setters">
