@@ -14,6 +14,27 @@
         <param-value>/WEB-INF/resources</param-value>
     </context-param>
     
+    <context-param>
+        <param-name>TWITTER_USERNAME</param-name>
+        <param-value>Account username</param-value>
+    </context-param>
+    <context-param>
+        <param-name>TWITTER_CONSUMER_KEY</param-name>
+        <param-value>Consumer key</param-value>
+    </context-param>
+    <context-param>
+        <param-name>TWITTER_CONSUMER_SECRET</param-name>
+        <param-value>Consumer secret</param-value>
+    </context-param>
+    <context-param>
+        <param-name>TWITTER_ACCESS_TOKEN</param-name>
+        <param-value>Account token</param-value>
+    </context-param>
+    <context-param>
+        <param-name>TWITTER_ACCESS_SECRET</param-name>
+        <param-value>Account token secret</param-value>
+    </context-param>
+    
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
