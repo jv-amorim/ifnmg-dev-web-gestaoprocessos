@@ -10,7 +10,7 @@
 	<ui:define name="titulo">Gerência Post</ui:define>
 
 	<ui:define name="main">
-	
+
 
 		<p:tabView id="tabView"
 			activeIndex="#{gerenciaUsuarioBean.activeTabIndex}">
@@ -27,35 +27,72 @@
 							<f:selectItems value="#{gerenciaPostBean.categorys}" />
 						</p:selectOneMenu>
 
-							<h3 style="padding: 0 1em 0 1em;">Titulo *</h3>
-							<p:textEditor id="titulo" value="#{gerenciaPostBean.post.title}"
-								 height="300" style="margin-bottom:10px; padding: 0 1em 0 1em;"
-								required="true"
-								requiredMessage="É necessario informar o titulo para o cadastro">
+						<h3 style="padding: 0 1em 0 1em;">Titulo *</h3>
+						<p:textEditor id="titulo" value="#{gerenciaPostBean.post.title}"
+							height="300" style="margin-bottom:10px; padding: 0 1em 0 1em;"
+							required="true"
+							requiredMessage="É necessario informar o titulo para o cadastro">
 
-								<f:facet name="toolbar">
-									<span class="ql-formats">
-										<button class="ql-bold"></button>
-										<button class="ql-italic"></button>
-										<button class="ql-underline"></button>
-										<button class="ql-strike"></button>
-									</span>
-									<span class="ql-formats"> <select class="ql-font"></select>
-										<select class="ql-size"></select>
-									</span>
-								</f:facet>
-							</p:textEditor>
+							<f:facet name="toolbar">
+								<span class="ql-formats">
+									<button class="ql-bold"></button>
+									<button class="ql-italic"></button>
+									<button class="ql-underline"></button>
+									<button class="ql-strike"></button>
+								</span>
+								<span class="ql-formats"> <select class="ql-font"></select>
+									<select class="ql-size"></select>
+								</span>
+							</f:facet>
+						</p:textEditor>
 
-							<h3 style="padding: 0 1em 0 1em;">Conteudo *</h3>
-							<p:textEditor id="content"
-							 height="300" style="margin-bottom:10px; padding: 0 1em 0 1em;"
-								value="#{gerenciaPostBean.post.content}" required="true"
-								requiredMessage="É necessario informar o conteudo para o cadastro"/>
+						<h3 style="padding: 0 1em 0 1em;">Conteudo *</h3>
+						<p:textEditor id="content" height="300"
+							style="margin-bottom:10px; padding: 0 1em 0 1em;"
+							value="#{gerenciaPostBean.post.content}" required="true"
+							requiredMessage="É necessario informar o conteudo para o cadastro">
 
-							<p:commandButton update="@form tabView:tableForm:tablePost"
-								process="@form tabView:tableForm:tablePost"
-								action="#{gerenciaPostBean.registerPost}"
-								style="margin: 1em 0 0 1em; ;width: 20%" value="Salvar" />
+							<f:facet name="toolbar">
+								<span class="ql-formats"> <select class="ql-font" /> <select
+									class="ql-size" />
+								</span>
+								<span class="ql-formats">
+									<button class="ql-bold" />
+									<button class="ql-italic" />
+									<button class="ql-underline" />
+									<button class="ql-strike" />
+								</span>
+								<span class="ql-formats"> <select class="ql-color" /> <select
+									class="ql-background" />
+								</span>
+								<span class="ql-formats">
+									<button class="ql-script" value="sub" />
+									<button class="ql-script" value="super" />
+								</span>
+								<span class="ql-formats">
+									<button class="ql-header" value="1" />
+									<button class="ql-header" value="2" />
+									<button class="ql-blockquote" />
+									<button class="ql-code-block" />
+								</span>
+								<span class="ql-formats">
+									<button class="ql-list" value="ordered" />
+									<button class="ql-list" value="bullet" />
+									<button class="ql-indent" value="-1" />
+									<button class="ql-indent" value="+1" />
+								</span>
+								<span class="ql-formats">
+									<button class="ql-direction" value="rtl" /> <select
+									class="ql-align" />
+								</span>
+							</f:facet>
+
+						</p:textEditor>
+
+						<p:commandButton update="@form tabView:tableForm:tablePost"
+							process="@form tabView:tableForm:tablePost"
+							action="#{gerenciaPostBean.registerPost}"
+							style="margin: 1em 0 0 1em; ;width: 20%" value="Salvar" />
 
 
 					</p:fieldset>
@@ -67,17 +104,19 @@
 						id="tablePost" paginator="true" rows="10">
 						<p:column>
 							<f:facet name="header">Title</f:facet>
-							<p:outputLabel value="#{gerenciaPostBean.formatRemoveHtmlTags(post.title)}" />
+							<p:outputLabel
+								value="#{gerenciaPostBean.formatRemoveHtmlTags(post.title)}" />
 						</p:column>
 						<p:column>
 							<f:facet name="header">Ultima atualização</f:facet>
-							<p:outputLabel value="#{gerenciaPostBean.formatLastUpdateDataFromPost(post)}" />
+							<p:outputLabel
+								value="#{gerenciaPostBean.formatLastUpdateDataFromPost(post)}" />
 						</p:column>
 						<p:column>
 							<f:facet name="header">Category</f:facet>
 							<p:outputLabel value="#{post.category}" />
 						</p:column>
-					<p:column style="text-align: right;">
+						<p:column style="text-align: right;">
 							<p:commandButton icon="pi pi-user-edit"
 								update="tabView tabView:registerForm"
 								process="tabView tabView:registerForm"
