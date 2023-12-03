@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	template="/WEB-INF/templates/default.xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Gerência Post</ui:define>
+
+	<ui:define name="main">
+	
+
+		<p:tabView id="tabView"
+			activeIndex="#{gerenciaUsuarioBean.activeTabIndex}">
+			<p:tab title="Criar Post">
+				<h:form id="registerForm">
+					<p:messages />
+					<p:fieldset
+						style="margin: 100px 0px 0px 100px; padding: 50px 0px;width: 50%;">
+
+						<p:outputLabel value="Categoria" for="category"
+							style="padding: 0 1em 0 1em;" />
+						<p:selectOneMenu id="category" required="true" style="width: 20%;"
+							value="#{gerenciaPostBean.post.category}">
+							<f:selectItems value="#{gerenciaPostBean.categorys}" />
+						</p:selectOneMenu>
+
+							<h3 style="padding: 0 1em 0 1em;">Titulo *</h3>
+							<p:textEditor id="titulo" value="#{gerenciaPostBean.post.title}"
+								 height="300" style="margin-bottom:10px; padding: 0 1em 0 1em;"
+								required="true"
+								requiredMessage="É necessario informar o titulo para o cadastro">
+
+								<f:facet name="toolbar">
+									<span class="ql-formats">
+										<button class="ql-bold"></button>
+										<button class="ql-italic"></button>
+										<button class="ql-underline"></button>
+										<button class="ql-strike"></button>
+									</span>
+									<span class="ql-formats"> <select class="ql-font"></select>
+										<select class="ql-size"></select>
+									</span>
+								</f:facet>
+							</p:textEditor>
+
+							<h3 style="padding: 0 1em 0 1em;">Conteudo *</h3>
+							<p:textEditor id="content"
+							 height="300" style="margin-bottom:10px; padding: 0 1em 0 1em;"
+								value="#{gerenciaPostBean.post.content}" required="true"
+								requiredMessage="É necessario informar o conteudo para o cadastro"/>
+
+							<p:commandButton update="@form tabView:tableForm:tablePost"
+								process="@form tabView:tableForm:tablePost"
+								action="#{gerenciaPostBean.registerPost}"
+								style="margin: 1em 0 0 1em; ;width: 20%" value="Salvar" />
+
+
+					</p:fieldset>
+				</h:form>
+			</p:tab>
+			<p:tab title="Listar Post">
+				<h:form id="tableForm">
+					<p:dataTable value="#{gerenciaPostBean.listPost}" var="post"
+						id="tablePost" paginator="true" rows="10">
+						<p:column>
+							<f:facet name="header">Title</f:facet>
+							<p:outputLabel value="#{gerenciaPostBean.formatRemoveHtmlTags(post.title)}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">Ultima atualização</f:facet>
+							<p:outputLabel value="#{gerenciaPostBean.formatLastUpdateDataFromPost(post)}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">Category</f:facet>
+							<p:outputLabel value="#{post.category}" />
+						</p:column>
+					<p:column style="text-align: right;">
+							<p:commandButton icon="pi pi-user-edit"
+								update="tabView tabView:registerForm"
+								process="tabView tabView:registerForm"
+								action="#{gerenciaPostBean.loadPost(post)}" title="Editar" />
+							<p:commandButton icon="pi pi-trash" styleClass="ui-button-danger"
+								action="#{gerenciaPostBean.deletePost(post)}" update="@form"
+								process="@form" title="Deletar" style="margin: 0 10px" />
+						</p:column>
+					</p:dataTable>
+
+				</h:form>
+			</p:tab>
+		</p:tabView>
+	</ui:define>
+
+</ui:composition>
