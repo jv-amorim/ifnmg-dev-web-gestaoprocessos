@@ -1,41 +1,49 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://xmlns.jcp.org/jsf/html"
-    template="/WEB-INF/templates/default.xhtml"
-    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-    xmlns:p="http://primefaces.org/ui">
-	
-    <ui:define name="titulo">Recuperar Senha</ui:define>
-    
-    <ui:define name="main">
-    <h:form>
-    	<p:messages/>
-		
-		<p:fieldset style="margin: 32px 0px 0px 32px; width: 32%;">
-			<p:panelGrid columns="1" layout="grid" styleClass="showcase-text-align-center" >
-				<p:column rendered="#{recoverBean.emailSended == false}">
-					<h3>Informe o Email para a recuperação: </h3>
-					<p:inputText id="emailLogin" value="#{recoverBean.recoverEmail}" required="true"  requiredMessage="É necessário informar um email para a recuperação"/>
-				</p:column>
-				<p:column rendered="#{recoverBean.emailSended == false}">
-					<p:commandButton update="@form"  value="Enviar" action="#{recoverBean.sendRecoverEmail}" />
-				</p:column>	
-				<p:column rendered="#{recoverBean.emailSended == true}">
-					<h3>Informe o codigo de recuperação: </h3>
-					<p:inputText value="#{recoverBean.recovercode}" required="true" requiredMessage="É necessário informar o codigo enviado para a recuperação"/>
-				</p:column>
-				<p:column rendered="#{recoverBean.emailSended == true}">
-					<h3>Informe a nova senha: </h3>
-					<p:inputText value="#{recoverBean.newPassWord}" required="true"  requiredMessage="É necessário informar uma nova senha para o usuario"/>
-				</p:column>	
-				<p:column rendered="#{recoverBean.emailSended == true}">
-					<p:commandButton update="@form"  value="Recuperar" action="#{recoverBean.recoverAccount}" />
-				</p:column>	
-			</p:panelGrid>
-		</p:fieldset>
-    </h:form>
-    </ui:define>
-    
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	template="/WEB-INF/templates/default.xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Recuperar Senha</ui:define>
+
+	<ui:define name="main">
+		<h:form>
+			<p:messages />
+
+			<p:fieldset style="margin: 32px 0px 0px 32px; width: 32%;">
+				<p:panelGrid columns="1" layout="grid"
+					styleClass="showcase-text-align-center">
+					<p:column rendered="#{recoverBean.emailSended == false}">
+						<h3>Informe o Email para a recuperação:</h3>
+						<p:inputText id="emailLogin" value="#{recoverBean.recoverEmail}"
+							required="true"
+							requiredMessage="É necessário informar um email para a recuperação" />
+					</p:column>
+					<p:column rendered="#{recoverBean.emailSended == false}">
+						<p:commandButton update="@form" value="Enviar"
+							action="#{recoverBean.sendRecoverEmail}" />
+					</p:column>
+					<p:column rendered="#{recoverBean.emailSended == true}">
+						<h3>Informe o codigo de recuperação:</h3>
+						<p:inputText value="#{recoverBean.recovercode}"
+							widgetVar="emailSendButton" onclick="emailSendButton.disable()"
+							required="true"
+							requiredMessage="É necessário informar o codigo enviado para a recuperação" />
+					</p:column>
+					<p:column rendered="#{recoverBean.emailSended == true}">
+						<h3>Informe a nova senha:</h3>
+						<p:inputText value="#{recoverBean.newPassWord}" required="true"
+							requiredMessage="É necessário informar uma nova senha para o usuario" />
+					</p:column>
+					<p:column rendered="#{recoverBean.emailSended == true}">
+						<p:commandButton update="@form" value="Recuperar"
+							action="#{recoverBean.recoverAccount}" />
+					</p:column>
+				</p:panelGrid>
+			</p:fieldset>
+		</h:form>
+	</ui:define>
+
 </ui:composition>

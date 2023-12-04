@@ -226,3 +226,6 @@ nbdist/
 .nb-gradle/
 
 # End of https://www.toptal.com/developers/gitignore/api/git,java,maven,eclipse,intellij+all,netbeans
+
+# Ignoring to avoid keys/secrets leaks. Copy web.example.xml and modify with your keys/secrets.
+src/main/webapp/WEB-INF/web.xml

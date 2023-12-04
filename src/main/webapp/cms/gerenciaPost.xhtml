@@ -19,75 +19,32 @@
 					<p:messages />
 					<p:fieldset
 						style="margin: 100px 0px 0px 100px; padding: 50px 0px;width: 50%;">
-
 						<p:outputLabel value="Categoria" for="category"
-							style="padding: 0 1em 0 1em;" />
-						<p:selectOneMenu id="category" required="true" style="width: 20%;"
+							style="padding: 0 1em 0 1em; vertical-align:middle;" />
+						<p:selectOneMenu id="category" required="true"
+							style="width: 20%; vertical-align:middle;"
 							value="#{gerenciaPostBean.post.category}">
 							<f:selectItems value="#{gerenciaPostBean.categorys}" />
 						</p:selectOneMenu>
+						<br></br>
+						<br></br>
 
-						<h3 style="padding: 0 1em 0 1em;">Titulo *</h3>
-						<p:textEditor id="titulo" value="#{gerenciaPostBean.post.title}"
-							height="300" style="margin-bottom:10px; padding: 0 1em 0 1em;"
-							required="true"
-							requiredMessage="É necessario informar o titulo para o cadastro">
-
-							<f:facet name="toolbar">
-								<span class="ql-formats">
-									<button class="ql-bold"></button>
-									<button class="ql-italic"></button>
-									<button class="ql-underline"></button>
-									<button class="ql-strike"></button>
-								</span>
-								<span class="ql-formats"> <select class="ql-font"></select>
-									<select class="ql-size"></select>
-								</span>
-							</f:facet>
-						</p:textEditor>
+						<p:column>
+							<p:outputLabel value="Título"
+								style="font-weight: 700; font-size: 20px; padding: 0 1em 0 1em;"
+								for="title" />
+							<br></br>
+							<p:inputText id="title" value="#{gerenciaPostBean.post.title}"
+								required="true"
+								requiredMessage="É necessario informar o titulo para o cadastro"
+								maxlength="100" style="margin-left: 1em; margin-top: 10px;" />
+						</p:column>
 
 						<h3 style="padding: 0 1em 0 1em;">Conteudo *</h3>
 						<p:textEditor id="content" height="300"
 							style="margin-bottom:10px; padding: 0 1em 0 1em;"
 							value="#{gerenciaPostBean.post.content}" required="true"
-							requiredMessage="É necessario informar o conteudo para o cadastro">
-
-							<f:facet name="toolbar">
-								<span class="ql-formats"> <select class="ql-font" /> <select
-									class="ql-size" />
-								</span>
-								<span class="ql-formats">
-									<button class="ql-bold" />
-									<button class="ql-italic" />
-									<button class="ql-underline" />
-									<button class="ql-strike" />
-								</span>
-								<span class="ql-formats"> <select class="ql-color" /> <select
-									class="ql-background" />
-								</span>
-								<span class="ql-formats">
-									<button class="ql-script" value="sub" />
-									<button class="ql-script" value="super" />
-								</span>
-								<span class="ql-formats">
-									<button class="ql-header" value="1" />
-									<button class="ql-header" value="2" />
-									<button class="ql-blockquote" />
-									<button class="ql-code-block" />
-								</span>
-								<span class="ql-formats">
-									<button class="ql-list" value="ordered" />
-									<button class="ql-list" value="bullet" />
-									<button class="ql-indent" value="-1" />
-									<button class="ql-indent" value="+1" />
-								</span>
-								<span class="ql-formats">
-									<button class="ql-direction" value="rtl" /> <select
-									class="ql-align" />
-								</span>
-							</f:facet>
-
-						</p:textEditor>
+							requiredMessage="É necessario informar o conteudo para o cadastro" />
 
 						<p:commandButton update="@form tabView:tableForm:tablePost"
 							process="@form tabView:tableForm:tablePost"

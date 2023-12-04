@@ -23,34 +23,37 @@
 
 							<p:column>
 								<p:outputLabel value="Função" for="role"
-									style="padding: 0 1em 0 0;" />
-								<p:selectOneMenu id="role" required="true" style="width: 20%;"
+									style="padding: 0 1em 0 0; vertical-align:middle;" />
+								<p:selectOneMenu id="role" required="true" style="width: 20%; vertical-align:middle;"
 									value="#{gerenciaUsuarioBean.user.role}">
 									<f:selectItems value="#{gerenciaUsuarioBean.userRoles}" />
 								</p:selectOneMenu>
 							</p:column>
 
 							<p:column>
-								<p:outputLabel value="Nome" style="padding: 0 1em 0 0;"
+								<p:outputLabel value="Nome" style="padding: 0 1em 0 0; vertical-align:middle;"
 									for="name" />
 								<p:inputText id="name" value="#{gerenciaUsuarioBean.user.name}"
+									style="vertical-align:middle;"
 									required="true"
 									requiredMessage="É necessario informar o nome do usuario para o cadastro" />
 
 							</p:column>
 
 							<p:column>
-								<p:outputLabel value="Email" style="padding: 0 1em 0 0;"
+								<p:outputLabel value="Email" style="padding: 0 1em 0 0; vertical-align:middle;"
 									for="email" />
 								<p:inputText id="email"
+									style="vertical-align:middle;"
 									value="#{gerenciaUsuarioBean.user.email}" required="true"
 									requiredMessage="É necessario informar o email do usuario para o cadastro" />
 							</p:column>
 
 							<p:column>
-								<p:outputLabel value="Senha" style="padding: 0 1em 0 0;"
+								<p:outputLabel value="Senha" style="padding: 0 1em 0 0; vertical-align:middle;"
 									for="password" />
 								<p:inputText id="password"
+									style="vertical-align:middle;"
 									value="#{gerenciaUsuarioBean.user.passwordHash}"
 									required="true"
 									requiredMessage="É necessario informar a senha do usuario para o cadastro" />

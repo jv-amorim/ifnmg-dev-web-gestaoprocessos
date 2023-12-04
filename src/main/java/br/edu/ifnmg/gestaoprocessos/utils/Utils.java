@@ -15,4 +15,8 @@ public class Utils {
         return JsonbBuilder.create(config).toJson(object);
     }
 
+    public static <T extends Object> T fromJson(String json, Class<T> type) throws Exception {
+        return JsonbBuilder.create().fromJson(json, type);
+    }
+
 }
