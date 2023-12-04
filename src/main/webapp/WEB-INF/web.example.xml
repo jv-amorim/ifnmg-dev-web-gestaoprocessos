@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="4.0" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
+    <welcome-file-list>
+        <welcome-file>index.xhtml</welcome-file>
+        <welcome-file>login.xhtml</welcome-file>
+    </welcome-file-list>
+    
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Development</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.WEBAPP_RESOURCES_DIRECTORY</param-name>
+        <param-value>/WEB-INF/resources</param-value>
+    </context-param>
+    <context-param>
+        <param-name>PROJECT_DOMAIN</param-name>
+        <param-value>http://localhost:8080</param-value>
+    </context-param>
+    
+    <context-param>
+        <param-name>TWITTER_USERNAME</param-name>
+        <param-value>Account username</param-value>
+    </context-param>
+    <context-param>
+        <param-name>TWITTER_CONSUMER_KEY</param-name>
+        <param-value>Consumer key</param-value>
+    </context-param>
+    <context-param>
+        <param-name>TWITTER_CONSUMER_SECRET</param-name>
+        <param-value>Consumer secret</param-value>
+    </context-param>
+    <context-param>
+        <param-name>TWITTER_ACCESS_TOKEN</param-name>
+        <param-value>Account token</param-value>
+    </context-param>
+    <context-param>
+        <param-name>TWITTER_ACCESS_SECRET</param-name>
+        <param-value>Account token secret</param-value>
+    </context-param>
+    
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>PersistenceTestsServlet</servlet-name>
+        <servlet-class>br.edu.ifnmg.gestaoprocessos.view.PersistenceTestsServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PersistenceTestsServlet</servlet-name>
+        <url-pattern>/PersistenceTests</url-pattern>
+    </servlet-mapping>
+    
+    <session-config>
+        <session-timeout> 30 </session-timeout>
+    </session-config>
+    
+    <security-role>
+        <description>System Administrator</description>
+        <role-name>ADMIN</role-name>
+    </security-role>
+    <security-constraint>
+        <display-name>Admin Role</display-name>
+        <web-resource-collection>
+            <web-resource-name>All Administrative Pages</web-resource-name>
+            <url-pattern>/admin/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>ADMIN</role-name>
+        </auth-constraint>
+    </security-constraint>
+    
+    <security-role>
+        <description>Content Editor</description>
+        <role-name>EDITOR</role-name>
+    </security-role>
+    <security-constraint>
+        <display-name>Editor Role</display-name>
+        <web-resource-collection>
+            <web-resource-name>All CMS Pages</web-resource-name>
+            <url-pattern>/cms/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>EDITOR</role-name>
+        </auth-constraint>
+    </security-constraint>
+    
+    <security-role>
+        <description>Selection Process Applicant</description>
+        <role-name>APPLICANT</role-name>
+    </security-role>
+    <security-constraint>
+        <display-name>Applicant Role</display-name>
+        <web-resource-collection>
+            <web-resource-name>All App Pages</web-resource-name>
+            <url-pattern>/app/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>APPLICANT</role-name>
+        </auth-constraint>
+    </security-constraint>
+    
+    <error-page>
+        <error-code>403</error-code>
+        <location>/WEB-INF/templates/forbidden.xhtml</location>
+    </error-page>
+</web-app>
