@@ -16,8 +16,7 @@
 			<p:tab title="Cadastrar Usuarios">
 				<h:form id="registerForm">
 					<p:messages />
-					<p:fieldset
-						style="margin: 100px 0px 0px 100px; padding: 50px 0px;width: 50%;">
+					<p:panel header="#{gerenciaUsuarioBean.headerName}">
 						<p:panelGrid columns="1" layout="grid"
 							styleClass="showcase-text-align-center">
 
@@ -62,11 +61,15 @@
 								<p:commandButton update="@form tabView:tableForm:tableUser"
 									process="@form tabView:tableForm:tableUser"
 									action="#{gerenciaUsuarioBean.registerUser}"
-									style="margin: 1em 0; width: 20%" value="Salvar" />
+									style="margin: 1em 0; width: 15%" value="Salvar" />
+								<p:commandButton update="@form"
+									process="@form"
+									action="#{gerenciaUsuarioBean.limpar}"
+									style="margin: 1em 1em; width: 5%" value="Limpar" />
 							</p:column>
 
 						</p:panelGrid>
-					</p:fieldset>
+					</p:panel>
 				</h:form>
 			</p:tab>
 			<p:tab title="Listar Usuarios">

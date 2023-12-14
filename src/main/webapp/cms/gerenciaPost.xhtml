@@ -15,10 +15,10 @@
 		<p:tabView id="tabView"
 			activeIndex="#{gerenciaUsuarioBean.activeTabIndex}">
 			<p:tab title="Criar Post">
-				<h:form id="registerForm">
+				<h:form id="registerForm" prependId="true"
+					enctype="multipart/form-data">
 					<p:messages />
-					<p:fieldset
-						style="margin: 100px 0px 0px 100px; padding: 50px 0px;width: 50%;">
+					<p:panel header="Criar Post">
 						<p:outputLabel value="Categoria" for="category"
 							style="padding: 0 1em 0 1em; vertical-align:middle;" />
 						<p:selectOneMenu id="category" required="true"
@@ -45,17 +45,15 @@
 							style="margin-bottom:10px; padding: 0 1em 0 1em;"
 							value="#{gerenciaPostBean.post.content}" required="true"
 							requiredMessage="É necessario informar o conteudo para o cadastro" />
-					
-						<p:commandButton update="@form tabView:tableForm:tablePost"
-							process="@form tabView:tableForm:tablePost"
-							action="#{gerenciaPostBean.registerPost}"
-							style="margin: 1em 0 0 1em; ;width: 20%" value="Salvar" />
+
+						<br />
+						<br />
+						<br />
 
 
-					</p:fieldset>
-				</h:form>
-										<h:form id="arquivosForm">
-							<p:dataTable value="#{gerenciaPostBean.post.attachments}"
+						<p:panel id="anexos" header="Anexos" toggleable="true"
+							collapsed="true" toggleOrientation="vertical">
+							<p:dataTable id="anexosTable" value="#{gerenciaPostBean.post.attachments}"
 								var="file">
 								<p:column>
 									<f:facet name="header">Nome Arquivo</f:facet>
@@ -66,20 +64,38 @@
 									<p:outputLabel value="#{file.extension}" />
 								</p:column>
 								<p:column>
-									<f:facet name="header">Nome Arquivo</f:facet>
-									<p:outputLabel value="#{file.name}" />
+									<f:facet name="header">Opções</f:facet>
+									<p:commandButton icon="pi pi-trash"
+										styleClass="ui-button-danger"
+										action="#{gerenciaPostBean.deleteFile(file)}"
+										update="anexosTable" immediate="true"
+									 	title="Deletar" />
 								</p:column>
-	
+
 							</p:dataTable>
 
-							<p:fileUpload value="#{gerenciaPostBean.file}" mode="simple"
+							<p:fileUpload skinSimple="true" value="#{gerenciaPostBean.file}"
+								mode="simple"
 								fileLimitMessage="O arquivo superou o limite de tamanho maximo"
 								invalidSizeMessage="O arquivo superou o limite de tamanho maximo">
 							</p:fileUpload>
-							<p:commandButton value="Enviar imagem" update="arquivosForm" process = "@this" action="#{gerenciaPostBean.addFile}"></p:commandButton>
-						</h:form>
-						<br/><br/><br/><br/><br/>
-					
+
+							<p:commandButton id="salvaranexo" partialSubmit="true"
+								value="Enviar arquivo" update="anexos" process="anexos"
+								actionListener="#{gerenciaPostBean.addFile}"></p:commandButton>
+						</p:panel>
+
+						<br />
+						<br />
+
+						<p:commandButton id="salvar"
+							update="@form tabView:tableForm:tablePost"
+							process="@form tabView:tableForm:tablePost"
+							action="#{gerenciaPostBean.registerPost}"
+							style="margin: 1em 0 0 1em; ;width: 20%" value="Salvar" />
+					</p:panel>
+				</h:form>
+
 			</p:tab>
 			<p:tab title="Listar Post">
 				<h:form id="tableForm">

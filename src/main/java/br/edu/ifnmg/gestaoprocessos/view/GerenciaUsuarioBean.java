@@ -24,6 +24,7 @@ public class GerenciaUsuarioBean implements Serializable {
 	private UserEntity user = new UserEntity();
 	private Integer activeTabIndex = 0;
 	private List<UserEntity> listUser = new ArrayList<UserEntity>();
+	private String headerName = "Cadastro Usuario";
 
 	@Inject
 	private UserDao userDao;
@@ -54,9 +55,15 @@ public class GerenciaUsuarioBean implements Serializable {
 	public void loadUser(UserEntity user) {
 		this.user = new UserEntity();
 		this.user = user;
+		headerName = "Editar Usuario: " + user.getName();
 		activeTabIndex = 0;
 	}
-
+	
+	public void limpar() {
+		user = new UserEntity();
+		headerName = "Cadastro Usuario";
+	}
+	
 	public UserEntity getUser() {
 		return user;
 	}
@@ -85,4 +92,14 @@ public class GerenciaUsuarioBean implements Serializable {
 		this.activeTabIndex = activeTabIndex;
 	}
 
+	public String getHeaderName() {
+		return headerName;
+	}
+
+	public void setHeaderName(String headerName) {
+		this.headerName = headerName;
+	}
+
+	
+	
 }
