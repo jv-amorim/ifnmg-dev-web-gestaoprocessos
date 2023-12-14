@@ -39,6 +39,24 @@
         <param-value>Account token secret</param-value>
     </context-param>
     
+    <context-param>
+        <param-name>SMTP-EMAIL</param-name>
+        <param-value></param-value>
+    </context-param>
+    <context-param>
+        <param-name>SMTP-KEY</param-name>
+        <param-value></param-value>
+    </context-param>
+    
+    <context-param>
+        <param-name>primefaces.PRIVATE_CAPTCHA_KEY</param-name>
+        <param-value></param-value>
+    </context-param>    
+    <context-param>
+        <param-name>primefaces.PUBLIC_CAPTCHA_KEY</param-name>
+        <param-value></param-value>
+    </context-param>
+    
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>

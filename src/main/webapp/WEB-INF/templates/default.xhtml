@@ -17,15 +17,15 @@
         <div id="content">
             <header>
                 <div class="left">
-                    <div class="logo">
+                    <a class="logo" href="/GestaoProcessos-1.0-SNAPSHOT">
                         <p:graphicImage name="images/ifnmg-logo.png" width="175" height="50"></p:graphicImage>
-                    </div>
+                    </a>
                     <div class="navbar">
-                        <a href="http://localhost:8080/GestaoProcessos-1.0-SNAPSHOT/processos.xhtml">Processos</a>
-                        <a href="http://localhost:8080/GestaoProcessos-1.0-SNAPSHOT/noticias.xhtml">Notícias</a>
-                        <a href="http://localhost:8080/GestaoProcessos-1.0-SNAPSHOT/editais.xhtml">Editais</a>
-                        <a href="http://localhost:8080/GestaoProcessos-1.0-SNAPSHOT/orientacoes.xhtml">Orientações</a>
-                        <a href="./provas-simulados.xhtml">Provas &#38; Simulados</a>
+                        <a href="/GestaoProcessos-1.0-SNAPSHOT/processos.xhtml">Processos</a>
+                        <a href="/GestaoProcessos-1.0-SNAPSHOT/noticias.xhtml">Notícias</a>
+                        <a href="/GestaoProcessos-1.0-SNAPSHOT/editais.xhtml">Editais</a>
+                        <a href="/GestaoProcessos-1.0-SNAPSHOT/orientacoes.xhtml">Orientações</a>
+                        <a href="/GestaoProcessos-1.0-SNAPSHOT/provas-simulados.xhtml">Provas &#38; Simulados</a>
                     </div>
                 </div>
                 <div class="right">
@@ -36,7 +36,7 @@
                         <i class="pi pi-twitter"></i>
                     </div>
                     <h:form>
-                        <p:commandButton value="Acessar" action="#{loginBean.logout}"/>    
+                        <p:commandButton value="Sair" action="#{loginBean.logout}"/>    
                     </h:form>
                 </div>
             </header>
