@@ -18,9 +18,12 @@ public class FileEntity extends BaseEntity implements Serializable {
     @Column(nullable = false, length = 20)
     private FileType type;
 
-    @Column(name = "path_", nullable = false, length = 255)
-    private String path;
+//    @Column(name = "path_", nullable = false, length = 255)
+//    private String path;
 
+    @Column(nullable = false, length = 255)
+    private String content;
+    
     @Column(name = "size_", nullable = false)
     private Long size;
 
@@ -42,19 +45,29 @@ public class FileEntity extends BaseEntity implements Serializable {
         this.type = type;
     }
 
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
+//    public String getPath() {
+//        return path;
+//    }
+//
+//    public void setPath(String path) {
+//        this.path = path;
+//    }
+    
+    
 
     public Long getSize() {
         return size;
     }
 
-    public void setSize(Long size) {
+    public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public void setSize(Long size) {
         this.size = size;
     }
 

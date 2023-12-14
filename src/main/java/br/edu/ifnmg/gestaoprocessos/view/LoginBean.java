@@ -4,6 +4,8 @@ import br.edu.ifnmg.gestaoprocessos.domain.user.UserEntity;
 import br.edu.ifnmg.gestaoprocessos.domain.user.UserServiceLocal;
 import java.io.IOException;
 import java.io.Serializable;
+
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -34,7 +36,7 @@ public class LoginBean implements Serializable {
     private String email;
     @NotEmpty
     private String password;
-
+    
     //<editor-fold defaultstate="collapsed" desc="Getters/Setters">
     public String getEmail() {
         return email;
@@ -52,7 +54,16 @@ public class LoginBean implements Serializable {
         this.password = password;
     }
     //</editor-fold>
+    
+    @PostConstruct
+    public void init() {
+        ExternalContext ec = getExternalContext();
 
+        HttpServletRequest req = (HttpServletRequest) ec.getRequest();
+        HttpSession session = req.getSession();
+        session.invalidate();
+    }
+    
     public void login() throws IOException {
         switch (processAuthentication()) {
             case SEND_CONTINUE:
@@ -62,7 +73,7 @@ public class LoginBean implements Serializable {
                 facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Credenciais inválidas", null));
                 break;
             case SUCCESS:
-                ExternalContext ec = getExternalContext();
+            	ExternalContext ec = getExternalContext();
                 String initialPage = getUserInitialPage();
                 ec.redirect(ec.getRequestContextPath() + initialPage);
                 break;

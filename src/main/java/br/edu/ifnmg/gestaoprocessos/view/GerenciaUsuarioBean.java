@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.inject.Model;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -14,6 +13,7 @@ import javax.transaction.Transactional;
 import br.edu.ifnmg.gestaoprocessos.data.user.UserDao;
 import br.edu.ifnmg.gestaoprocessos.domain.user.UserEntity;
 import br.edu.ifnmg.gestaoprocessos.domain.user.UserRole;
+import br.edu.ifnmg.gestaoprocessos.domain.user.UserServiceLocal;
 
 @Named
 @ViewScoped
@@ -27,7 +27,9 @@ public class GerenciaUsuarioBean implements Serializable {
 
 	@Inject
 	private UserDao userDao;
-
+    @Inject
+    private UserServiceLocal userService;
+	
 	@PostConstruct
 	public void init() {
 		listUser = userDao.listAll();
@@ -35,6 +37,7 @@ public class GerenciaUsuarioBean implements Serializable {
 
 	@Transactional(rollbackOn = Exception.class)
 	public void registerUser() {
+		user.setPasswordHash(userService.generatePasswordHash(user.getPasswordHash()));
 		userDao.save(user);
 		if (listUser.contains(user) == false) {
 			listUser.add(user);

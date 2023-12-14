@@ -13,8 +13,8 @@
     <h:form>
     	<p:messages/>
 		
-		<p:fieldset style="margin: 32px 0px 0px 32px; width: 32%;">
-			<p:panelGrid columns="1" layout="grid" styleClass="showcase-text-align-center" >
+		<p:panel>
+			<p:panelGrid columns="1" layout="grid">
 				<p:column>
 					<p:outputLabel value="Email" style="padding: 0 1em 0 0;" for="emailLogin"/>
 					<p:inputText id="emailLogin" value="#{loginBean.email}" required="true" requiredMessage="É necessário informar um email para efetuar o login"/>
@@ -23,11 +23,15 @@
 					<p:outputLabel value="Senha" style="padding: 0 1em 0 0;" for="senhaLogin"/>
 					<p:password id="senhaLogin" value="#{loginBean.password}" required="true" requiredMessage="É necessário informar uma senha para efetuar o login"/>
 					<p:commandButton update="@form"  style="margin: 1em;" value="Entrar" action="#{loginBean.login}" />
-					<p:commandButton immediate="true" value="Esqueceu a senha?" action="recuperarSenha?faces-redirect=true" />
+					
 				</p:column>	
+				<p:column>
+					<a href="./recuperarSenha.xhtml" style="padding:5px"> Esqueceu a senha? </a>
+					<a href="./registrar.xhtml" style="padding:5px"> Registrar Cadastro</a>
+				</p:column>
 					
 			</p:panelGrid>
-		</p:fieldset>
+		</p:panel>
 		
     
     </h:form>

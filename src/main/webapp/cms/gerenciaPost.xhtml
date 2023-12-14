@@ -45,7 +45,7 @@
 							style="margin-bottom:10px; padding: 0 1em 0 1em;"
 							value="#{gerenciaPostBean.post.content}" required="true"
 							requiredMessage="É necessario informar o conteudo para o cadastro" />
-
+					
 						<p:commandButton update="@form tabView:tableForm:tablePost"
 							process="@form tabView:tableForm:tablePost"
 							action="#{gerenciaPostBean.registerPost}"
@@ -54,6 +54,32 @@
 
 					</p:fieldset>
 				</h:form>
+										<h:form id="arquivosForm">
+							<p:dataTable value="#{gerenciaPostBean.post.attachments}"
+								var="file">
+								<p:column>
+									<f:facet name="header">Nome Arquivo</f:facet>
+									<p:outputLabel value="#{file.name}" />
+								</p:column>
+								<p:column>
+									<f:facet name="header">Extenção</f:facet>
+									<p:outputLabel value="#{file.extension}" />
+								</p:column>
+								<p:column>
+									<f:facet name="header">Nome Arquivo</f:facet>
+									<p:outputLabel value="#{file.name}" />
+								</p:column>
+	
+							</p:dataTable>
+
+							<p:fileUpload value="#{gerenciaPostBean.file}" mode="simple"
+								fileLimitMessage="O arquivo superou o limite de tamanho maximo"
+								invalidSizeMessage="O arquivo superou o limite de tamanho maximo">
+							</p:fileUpload>
+							<p:commandButton value="Enviar imagem" update="arquivosForm" process = "@this" action="#{gerenciaPostBean.addFile}"></p:commandButton>
+						</h:form>
+						<br/><br/><br/><br/><br/>
+					
 			</p:tab>
 			<p:tab title="Listar Post">
 				<h:form id="tableForm">

@@ -1,6 +1,7 @@
 package br.edu.ifnmg.gestaoprocessos.view;
 
 import br.edu.ifnmg.gestaoprocessos.data.post.PostDao;
+import br.edu.ifnmg.gestaoprocessos.domain.file.FileEntity;
 import br.edu.ifnmg.gestaoprocessos.domain.post.PostCategoryEnum;
 import br.edu.ifnmg.gestaoprocessos.domain.post.PostEntity;
 import br.edu.ifnmg.gestaoprocessos.domain.postsocial.PostSocialServiceLocal;
@@ -14,6 +15,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
 import org.jsoup.Jsoup;
+import org.primefaces.component.fileupload.FileUpload;
+import org.primefaces.model.file.UploadedFile;
 
 @Named
 @ViewScoped
@@ -24,7 +27,8 @@ public class GerenciaPostBean implements Serializable {
     private PostEntity post = new PostEntity();
     private Integer activeTabIndex = 0;
     private List<PostEntity> listPost = new ArrayList<PostEntity>();
-
+    private UploadedFile file;
+    
     @Inject
     private PostDao postDao;
     @Inject
@@ -57,6 +61,19 @@ public class GerenciaPostBean implements Serializable {
         this.post = post;
         activeTabIndex = 0;
     }
+    
+    public void addFile() {
+    	FileEntity fileEnt =  new FileEntity();
+    	
+    	System.out.println(file.getFileName());
+    	
+    	fileEnt.setContent(file.getContent().toString());
+    	fileEnt.setExtension(file.getContentType());
+    	fileEnt.setName(file.getContentType());
+    	fileEnt.setSize(file.getSize());
+    	
+    	post.getAttachments().add(fileEnt);
+    }
 
     public String formatRemoveHtmlTags(String html) {
         return Jsoup.parse(html).text();
@@ -75,9 +92,7 @@ public class GerenciaPostBean implements Serializable {
     }
 
     public PostCategoryEnum[] getCategorys() {
-        PostCategoryEnum[] news = {PostCategoryEnum.NEWS};
-        return news;
-        //return PostCategoryEnum.values();
+        return PostCategoryEnum.values();
     }
 
     public List<PostEntity> getListPost() {
@@ -96,4 +111,14 @@ public class GerenciaPostBean implements Serializable {
         this.activeTabIndex = activeTabIndex;
     }
 
+	public UploadedFile getFile() {
+		return file;
+	}
+
+	public void setFile(UploadedFile file) {
+		this.file = file;
+	}
+
+    
+    
 }
