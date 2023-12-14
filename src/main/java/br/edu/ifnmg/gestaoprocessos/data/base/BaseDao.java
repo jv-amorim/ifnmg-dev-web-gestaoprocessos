@@ -48,4 +48,15 @@ public abstract class BaseDao implements BaseDaoLocal {
 		return query.getResultList();
 	}
 
+	public <T> List<T> findListNamed(String namedQuery, Object[] params) {
+		Query query = entityManager.createNamedQuery(namedQuery);
+		
+		if (params != null && params.length > 0) {
+			for (int i = 1; i <= params.length; i++) {
+				query.setParameter(i, params[i - 1]);
+			}
+		}
+
+		return query.getResultList();	
+	}
 }

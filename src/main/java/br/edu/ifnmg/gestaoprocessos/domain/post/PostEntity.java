@@ -15,11 +15,13 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity(name = "Post")
 @Table(name = "post")
+@NamedQuery(name = "findByCategory", query="select p from Post p where p.category = ?1")
 public class PostEntity extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;

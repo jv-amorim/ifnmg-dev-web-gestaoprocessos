@@ -8,5 +8,5 @@ public interface BaseDaoLocal {
     void delete(BaseEntity ent);
     Object findById(Class<?> entClass,Long id);
     <T> List<T> findListPure(String sql, Object[] params);
-
+    <T> List<T> findListNamed(String namedQuery, Object[] params);
 }
