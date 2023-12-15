@@ -67,18 +67,42 @@ public class GerenciaPostBean implements Serializable {
 			FileEntity fileEnt = new FileEntity();
 
 			fileEnt.setContent(file.getContent().toString());
-			fileEnt.setExtension(file.getContentType());
 			fileEnt.setMimetype(file.getContentType());
+
+			String type = file.getContentType().substring(file.getContentType().indexOf("/")+1);
+			fileEnt.setExtension(type);
+
 			fileEnt.setName(file.getFileName());
 			fileEnt.setSize(file.getSize());
-			
-			//fazer um switch para definir isso dps
-			fileEnt.setType(FileType.OTHER);
+
+			switch (type) {
+			case "png":
+				fileEnt.setType(FileType.IMAGE);
+			case "jpeg":
+				fileEnt.setType(FileType.IMAGE);
+			case "jpg":
+				fileEnt.setType(FileType.IMAGE);
+			case "pdf":
+				fileEnt.setType(FileType.PDF);
+			case "mp3":
+				fileEnt.setType(FileType.AUDIO);
+			case "mp4":
+				fileEnt.setType(FileType.VIDEO);
+			case "avi":
+				fileEnt.setType(FileType.VIDEO);
+			case "mkv":
+				fileEnt.setType(FileType.VIDEO);
+			default:
+				fileEnt.setType(FileType.OTHER);
+				break;
+			}
+
+			// fazer um switch para definir isso dps
 
 			post.getAttachments().add(fileEnt);
 		}
 	}
-	
+
 	public void deleteFile(FileEntity file) {
 		post.getAttachments().remove(file);
 	}

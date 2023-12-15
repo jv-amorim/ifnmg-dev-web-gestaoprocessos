@@ -10,8 +10,9 @@
 	<ui:define name="titulo">Orientation</ui:define>
 
 	<ui:define name="main">
-
-		<p:dataGrid value="#{feedBean.orientations}" var="orientatation" layout="grid" columns="3">
+		<h:form>
+			<p:dataGrid value="#{feedBean.orientations}" var="orientatation"
+				layout="grid" columns="3">
 				<p:card>
 					<f:facet name="header">
 						<p:graphicImage name="images/orientatation.jpg" height="30%"></p:graphicImage>
@@ -22,10 +23,38 @@
 
 					<p:outputLabel value="#{orientatation.content}" />
 					<f:facet name="footer">
-						<p:commandButton icon="pi pi-angle-up" value="Visualizar" />
+						<p:commandButton icon="pi pi-angle-up"
+							actionListener="#{feedBean.setSelectedPost(orientatation)}"
+							oncomplete="PF('dialog').show()" update="@form"
+							value="Visualizar" />
 					</f:facet>
 				</p:card>
-		</p:dataGrid>
+			</p:dataGrid>
+
+			<p:dialog header="#{feedBean.selectedPost.title}" widgetVar="dialog"
+				modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+				<p:outputPanel>
+
+					<p:outputLabel value="#{feedBean.selectedPost.content}" />
+
+					<br />
+					<br />
+
+					<p:dataTable id="anexosTable"
+						value="#{feedBean.selectedPost.attachments}" var="file">
+						<p:column>
+							<f:facet name="header">Nome Arquivo</f:facet>
+							<p:outputLabel value="#{file.name}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">Extenção</f:facet>
+							<p:outputLabel value="#{file.extension}" />
+						</p:column>
+					</p:dataTable>
+
+				</p:outputPanel>
+			</p:dialog>
+		</h:form>
 	</ui:define>
 
 </ui:composition>

@@ -47,14 +47,9 @@ public class PostSocialService implements PostSocialServiceLocal {
 
     @Override
     public List<PostSocialEntity> publish(PostEntity post) throws Exception {
-        try {
-            ArrayList<PostSocialEntity> postSocials = new ArrayList<PostSocialEntity>();
-            postSocials.add(publishToTwitter(post));
-            return postSocials;
-        } catch (Exception ex) {
-            System.out.println(ex);
-            return new ArrayList<PostSocialEntity>();
-        }
+        ArrayList<PostSocialEntity> postSocials = new ArrayList<PostSocialEntity>();
+        postSocials.add(publishToTwitter(post));
+        return postSocials;
     }
 
     private PostSocialEntity publishToTwitter(PostEntity post) throws Exception {

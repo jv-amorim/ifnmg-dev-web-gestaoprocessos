@@ -11,10 +11,12 @@
 
 	<ui:define name="main">
 
-		<p:dataGrid value="#{feedBean.news}" var="news" layout="grid" columns="3">
+		<h:form>
+			<p:dataGrid value="#{feedBean.news}" var="news" layout="grid"
+				columns="3">
 				<p:card>
 					<f:facet name="header">
-						<p:graphicImage name="images/news.jpg"></p:graphicImage>
+						<p:graphicImage name="images/news.jpg" height="30%"></p:graphicImage>
 					</f:facet>
 					<f:facet name="title">
 						<p:outputLabel value="#{news.title}"></p:outputLabel>
@@ -22,10 +24,39 @@
 
 					<p:outputLabel value="#{news.content}" />
 					<f:facet name="footer">
-						<p:commandButton icon="pi pi-angle-up" value="Visualizar" />
+						<p:commandButton icon="pi pi-angle-up"
+							actionListener="#{feedBean.setSelectedPost(news)}"
+							oncomplete="PF('dialog').show()" update="@form"
+							value="Visualizar" />
 					</f:facet>
 				</p:card>
-		</p:dataGrid>
+			</p:dataGrid>
+
+			<p:dialog header="#{feedBean.selectedPost.title}" widgetVar="dialog"
+				modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+				<p:outputPanel>
+
+					<p:outputLabel value="#{feedBean.selectedPost.content}" />
+
+					<br />
+					<br />
+
+					<p:dataTable id="anexosTable"
+						value="#{feedBean.selectedPost.attachments}" var="file">
+						<p:column>
+							<f:facet name="header">Nome Arquivo</f:facet>
+							<p:outputLabel value="#{file.name}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">Extenção</f:facet>
+							<p:outputLabel value="#{file.extension}" />
+						</p:column>
+					</p:dataTable>
+
+				</p:outputPanel>
+			</p:dialog>
+		</h:form>
+
 	</ui:define>
 
 </ui:composition>

@@ -50,11 +50,10 @@
 						<br />
 						<br />
 
-
 						<p:panel id="anexos" header="Anexos" toggleable="true"
 							collapsed="true" toggleOrientation="vertical">
-							<p:dataTable id="anexosTable" value="#{gerenciaPostBean.post.attachments}"
-								var="file">
+							<p:dataTable id="anexosTable"
+								value="#{gerenciaPostBean.post.attachments}" var="file">
 								<p:column>
 									<f:facet name="header">Nome Arquivo</f:facet>
 									<p:outputLabel value="#{file.name}" />
@@ -68,10 +67,8 @@
 									<p:commandButton icon="pi pi-trash"
 										styleClass="ui-button-danger"
 										action="#{gerenciaPostBean.deleteFile(file)}"
-										update="anexosTable" immediate="true"
-									 	title="Deletar" />
+										update="anexosTable" immediate="true" title="Deletar" />
 								</p:column>
-
 							</p:dataTable>
 
 							<p:fileUpload skinSimple="true" value="#{gerenciaPostBean.file}"

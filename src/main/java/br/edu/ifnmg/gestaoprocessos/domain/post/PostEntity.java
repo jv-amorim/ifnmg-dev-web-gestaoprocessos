@@ -1,23 +1,26 @@
 package br.edu.ifnmg.gestaoprocessos.domain.post;
 
-import br.edu.ifnmg.gestaoprocessos.domain.base.BaseEntity;
-import br.edu.ifnmg.gestaoprocessos.domain.file.FileEntity;
-import br.edu.ifnmg.gestaoprocessos.domain.posthistory.PostHistoryEntity;
-import br.edu.ifnmg.gestaoprocessos.domain.postsocial.PostSocialEntity;
-import br.edu.ifnmg.gestaoprocessos.domain.selectionprocess.SelectionProcessEntity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import br.edu.ifnmg.gestaoprocessos.domain.base.BaseEntity;
+import br.edu.ifnmg.gestaoprocessos.domain.file.FileEntity;
+import br.edu.ifnmg.gestaoprocessos.domain.posthistory.PostHistoryEntity;
+import br.edu.ifnmg.gestaoprocessos.domain.postsocial.PostSocialEntity;
+import br.edu.ifnmg.gestaoprocessos.domain.selectionprocess.SelectionProcessEntity;
 
 @Entity(name = "Post")
 @Table(name = "post")
@@ -40,7 +43,7 @@ public class PostEntity extends BaseEntity implements Serializable {
     @JoinColumn(name = "selectionprocessid")
     private SelectionProcessEntity process;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<FileEntity> attachments = new ArrayList<FileEntity>();
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
